@@ -92,31 +92,50 @@ samples:
 outdir: human_rapclust
 ```
 
-Along with the above information GRASS requires related species information in *any* **one** the following format
+Along with the above information GRASS requires related species information in *any* **one** of the following formats:
 
   1. You can pass the FASTA files to GRASS in the following way and it will run a two-way BLAST assigning seed labels to contigs. Ensure that the FASTA files are passed in the following order (the first is from the test species, second from the annotated species)
 
+  ```
+  fasta:
+      - human.transcripts.fa
+      - chimp.transcripts.fa
+  ```
+
+  2. If you have already run BLAST, you can pass the output files (in BLAST outfmt 6). Again, ensure that the first one is BLAST of contigs from test species against the annotated species and the second is BLAST of contigs from annotated species against the test species. 
+
+  ```
+  labels:
+      - human.chimpdb.txt
+      - chimp.humandb.txt
+  ```
+
+  3. If you wish to use a pre-processed label file, you can pass a two-column file where the first is the set of contigs from the test species and second the label. If a contig has multiple labels in the input file, one will be chosen arbitrarily as seed.
+
+  ```
+  labels:
+      - human.labels.txt
+  ```
+
+So a sample config file provided with the FASTA files (example 1) would look something like this:
 ```
+conditions:
+    - Control
+    - HOXA1 Knockdown
+samples:
+    Control:
+        - SRR493366_quant
+        - SRR493367_quant
+        - SRR493368_quant
+    HOXA1 Knockdown:
+        - SRR493369_quant
+        - SRR493370_quant
+        - SRR493371_quant
+outdir: human_rapclust
 fasta:
     - human.transcripts.fa
     - chimp.transcripts.fa
 ```
-
-  2. If you have already run BLAST, you can pass the output files (in BLAST outfmt 6). Again, ensure that the first one is BLAST of contigs from test species against the annotated species and the second is BLAST of contigs from annotated species against the test species. 
-
-```
-labels:
-    - human.chimpdb.txt
-    - chimp.humandb.txt
-```
-
-  3. If you wish to use a pre-processed label file, you can pass a two-column file where the first is the set of contigs from the test species and second the label. If a contig has multiple labels in the input file, one will be chosen arbitrarily as seed.
-
-```
-labels:
-    - human.labels.txt
-```
-
 
 ### Run GRASS
 Once we have our `config.yaml` file ready with the above information we can run GRASS.  GRASS uses [YAML](http://yaml.org/) to specify its configuration files.  The configuration file must contain the following three entries; `conditions`, `samples`, and `outdir` and only one of the following two: `fasta` or `labels`.  The `conditions` entry lists the conditions present in the sample. The `samples` entry is a nested dictionary of lists; there is a key corrseponding to each condition listed in the `conditions` entry, and the value associated with this key is a list of quantification directories of the samples for this condition.  Finally, the `outdir` entry specifies where the output and intermediate files should be stored. The last entry has been explained above. Given these, you can run GRASS as:
