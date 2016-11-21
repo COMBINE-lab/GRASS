@@ -93,7 +93,6 @@ fasta:
     - human.transcripts.fa
     - chimp.transcripts.fa
 ```
-
   2. If you have already run BLAST, you can pass the output files (in BLAST outfmt 6). Again, ensure that the first one is BLAST of contigs from test species against the annotated species and the second is BLAST of contigs from annotated species against the test species. 
 
 ```
@@ -114,7 +113,6 @@ labels:
     - human.chimpdb.txt
     - chimp.humandb.txt
 ```
-
   3. If you wish to use a pre-processed label file, you can pass a two-column file where the first is the set of contigs from the test species and second the label. If a contig has multiple labels in the input file, one will be chosen arbitrarily as seed.
 
 ```
