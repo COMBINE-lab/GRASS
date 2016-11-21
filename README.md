@@ -94,7 +94,7 @@ outdir: human_rapclust
 
 Along with the above information GRASS requires related species information in *any* **one** the following format
 
-1. You can pass the FASTA files to GRASS in the following way and it will run a two-way BLAST assigning seed labels to contigs. Ensure that the FASTA files are passed in the following order (the first is from the test species, second from the annotated species)
+  1. You can pass the FASTA files to GRASS in the following way and it will run a two-way BLAST assigning seed labels to contigs. Ensure that the FASTA files are passed in the following order (the first is from the test species, second from the annotated species)
 
 ```
 fasta:
@@ -102,7 +102,7 @@ fasta:
     - chimp.transcripts.fa
 ```
 
-2.  If you have already run BLAST, you can pass the output files (in BLAST outfmt 6). Again, ensure that the first one is BLAST of contigs from test species against the annotated species and the second is BLAST of contigs from annotated species against the test species. 
+  2. If you have already run BLAST, you can pass the output files (in BLAST outfmt 6). Again, ensure that the first one is BLAST of contigs from test species against the annotated species and the second is BLAST of contigs from annotated species against the test species. 
 
 ```
 labels:
@@ -110,7 +110,7 @@ labels:
     - chimp.humandb.txt
 ```
 
-3. If you wish to use a pre-processed label file, you can pass a two-column file where the first is the set of contigs from the test species and second the label. If a contig has multiple labels in the input file, one will be chosen arbitrarily as seed.
+  3. If you wish to use a pre-processed label file, you can pass a two-column file where the first is the set of contigs from the test species and second the label. If a contig has multiple labels in the input file, one will be chosen arbitrarily as seed.
 
 ```
 labels:
