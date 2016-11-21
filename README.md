@@ -55,7 +55,7 @@ The code for GRASS automatically runs RapClust to generate the mapping ambiguity
   2. Run GRASS, providing it with a configuration file that describes the experimental setup of your samples, and where the Sailfish quantification results have been written.
 
 ### Run Sailfish/Salmon
-Let's illustrate this pipeline with a particular example, the following experimental data from the [Trapnell et al. paper](http://www.nature.com/nbt/journal/v31/n1/full/nbt.2450.html):
+Let's illustrate this pipeline with a particular example, the following experimental data from *[Trapnell et al.](http://www.nature.com/nbt/journal/v31/n1/full/nbt.2450.html)*:
 
 Accession | Condition | Replicate
 ----------|-----------|----------
