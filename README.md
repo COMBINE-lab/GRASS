@@ -147,9 +147,9 @@ Once we have our `config.yaml` file ready with the above information we can run 
 > grass --config config.yaml
 ```
 
-This will process the samples, generate the mapping ambiguity graph, filter it according to the conditions, process the contig labels, run the iterative GRASS algorithm to improve the graph and cluster the resuling graph using [MCL](http://micans.org/mcl/) internally.  Once GRASS is finished, the `human_rapclust` directory should exist.  It will contain the following files which are results from both RapClust and GRASS:
+This will process the samples, generate the mapping ambiguity graph, filter it according to the conditions, process the contig labels, run the iterative GRASS algorithm to improve the graph and cluster the resuling graph using [MCL](http://micans.org/mcl/) internally.  Once GRASS is finished, the `human_rapclust` directory should exist.  It will contain the following files which are results from GRASS plus the graph file from RapClust:
 
-`seedLabels.txt, grassGraph.txt, grass.mag.clust, grass.mag.flat.clust, grass.stats.json, mag.filt.net, finalLabels.txt`
+`seedLabels.txt, grassGraph.txt, grass.mag.clust, grass.mag.flat.clust, grass.stats.json, mag.filt.net, finalLabels.txt, stats.json`
 
 The most important file for downstream processing is `grass.mag.flat.clust`.  It contains the computed cluster information in a "transcript-to-gene" mapping formation that is compatible with downstream tools like [tximport](https://github.com/mikelove/tximport).  The file `seedLabels.txt` contains the initial contig to gene labeling and `finalLabels.txt` contains the labels after running GRASS and a contig may have multiple labels in this file, each with an associated score. The rest of the files are for internal use in the algorithm.
 
