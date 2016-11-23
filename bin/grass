@@ -16,12 +16,37 @@ from grass import iterGrass
 
 CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 
+def which(program):
+    import os
+    def is_exe(fpath):
+        return os.path.isfile(fpath) and os.access(fpath, os.X_OK)
+
+    fpath, fname = os.path.split(program)
+    if fpath:
+        if is_exe(program):
+            return program
+    else:
+        for path in os.environ["PATH"].split(os.pathsep):
+            path = path.strip('"')
+            exe_file = os.path.join(path, program)
+            if is_exe(exe_file):
+                return exe_file
+
+    return None
+
 @click.command(context_settings=CONTEXT_SETTINGS)
 @click.option('--config', required=True, help='Config file describing the experimental setup')
 def processInput(config):
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger("grass")
     coloredlogs.install(level='INFO')
+
+    if (which("junto") == None):
+        logging.critical("Junto library not added to PATH. Install junto.")
+        sys.exit(1)
+    if (which("mcl") == None):
+        logging.critical("MCL not added to PATH. Install MCL.")
+        sys.exit(1)
 
     #config = args.config
     cfg = None
@@ -43,7 +68,7 @@ def processInput(config):
         logging.critical("Your configuration file must contain a \"fasta\" or \"labels\" entry!")
         sys.exit(1)
     elif 'labels' in cfg and 'fasta' in cfg:
-        ogging.critical("Provide either FASTA files to run BLAST or labels file in the required formats")
+        logging.critical("Provide either FASTA files to run BLAST or labels file in the required formats")
         sys.exit(1)
     else:
         outdir = cfg['outdir']
