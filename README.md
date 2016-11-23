@@ -13,16 +13,19 @@ GRASS depends on the following external programs (to be available in the environ
 
   1. The [MCL](http://micans.org/mcl/) clustering tool
   2. The [Sailfish](https://github.com/kingsfordgroup/sailfish) (or [Salmon](https://github.com/COMBINE-lab/salmon)) quantification tool.
-  3. The [RapClust](https://github.com/COMBINE-lab/RapClust) contig clustering tool.
+  3. The [junto](https://github.com/parthatalukdar/junto) library for label propagation.
 
 Further, it depends on the following Python packages:
   
-  1. [Click](http://click.pocoo.org/5/)
-  2. [PyYAML](https://pypi.python.org/pypi/PyYAML)
-  3. [Pandas](http://pandas.pydata.org/)
-  4. [NumPy](http://www.numpy.org/)
+  1. [RapClust](https://pypi.python.org/pypi/rapclust/)
+  2. [Click](http://click.pocoo.org/5/)
+  3. [PyYAML](https://pypi.python.org/pypi/PyYAML)
+  4. [Pandas](http://pandas.pydata.org/)
+  5. [NumPy](http://www.numpy.org/)
 
 If you wish to use the default labeling method in GRASS and allow it to run BLAST on the input FASTA files, ensure that you have the BLAST utilities installed (ncbi-blast+). 
+
+Also ensure that junto and MCL are installed. For junto, download the library source code from the github page and set JUNTO_DIR to be the top level directory of junto. Next, add the directory JUNTO_DIR/bin to your path "export PATH="$PATH:$JUNTO_DIR/bin". A ready-to-install tarball for MCL can be downloaded from their webpage.
 
 To install GRASS via pip (along with the dependencies getting installed automatically), you can use:
 
